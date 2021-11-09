@@ -2,7 +2,7 @@
     <html>
     <head>
     <meta charset="UTF-8" />
-    <title>Hello</title>
+    <title>学生心理档案</title>
     <style>
 
     </style>
@@ -27,8 +27,8 @@
           <option value="1">很差</option>
         </select><br>
        若差请具体表述：<input name='health2' class='up' ><br>
-       既往病史：
-       <input type="checkbox" class="bingshi" value="无" id='check_none' />无
+       既往病史（若有请具体说明）：
+       <input type="checkbox"  value="无" id='check_none' />无
       <input type="checkbox" name="bingshi" value="脑炎" class='bingshi' />脑炎
          <input type="checkbox" name="bingshi" value="癫痫" class='bingshi' />癫痫
       <input type="checkbox" name="bingshi" value="心脏病" class='bingshi' />心脏病
@@ -38,7 +38,7 @@
       <input type="checkbox" name="bingshi" value="小儿麻痹" class='bingshi' />小儿麻痹
          <input type="checkbox" name="bingshi" value="心理问题" class='bingshi' />心理问题
       <input type="checkbox" name="bingshi" value="其他" class='bingshi' />其他
-        <br>若有请具体说明：<input class='bingshi'  id='bingshi2' ><br>
+        <br>具体说明：<input class='bingshi'  id='bingshi2' ><br>
         在校主要表现：<input name='zaixiaobiaoxian'>
         
            特殊情况：
@@ -176,14 +176,20 @@
 				var val=up[i].value
 				d[name]=val;
 			  }
-			  d.bingshi=[]
-			  bb=$('.bingshi');
-			  for(i=0;i<bb.length;i++){
-				if(bb[i].checked){
-					d.bingshi.push(bb[i].value);
-				}
-			  }			
-			  d.bingshi.push(bb[bb.length-1].value);
+			  
+			  if($('#check_none').attr('checked')){
+				  d.bingshi=['无']
+			  }else{
+				   d.bingshi=[]
+				  bb=$('.bingshi');
+				  for(i=0;i<bb.length;i++){
+					if(bb[i].checked){
+						d.bingshi.push(bb[i].value);
+					}
+				  }			
+				  d.bingshi.push(bb[bb.length-1].value);
+			  }
+				 
 			  d.special=[]
 			  bb=$('.special');
 			  for(i=0;i<bb.length;i++){
