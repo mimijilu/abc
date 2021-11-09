@@ -1,0 +1,210 @@
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <meta charset="UTF-8" />
+    <title>Hello</title>
+    <style>
+
+    </style>
+    <script src="jquery-1.8.0.js">
+    </script>
+    </head>
+    <body>
+    <form method='get'>
+      <p>个人情况</p>
+      姓名：<input name='name'>班级：<input name='class'>性别：<span id='sex'></span>出生年月：<span id='birth'></span>
+      <br>
+      民族：<span id='minzu'></span>籍贯：<input name='jiguan' class='up'>学习兴趣：<input name='xuexixingqu' class='up' >
+      <br>
+      家庭住址：<input name='address' class='up' ><br>兴趣特长：<input name='xingqutechang' class='up' ><br>
+      健康状况：
+        <select name='health' class='up' >
+          <option value ="0">请选择</option>
+          <option value ="5">很好</option>
+          <option value ="4">良好</option>
+          <option value="3">普通</option>
+          <option value="2">较差</option>
+          <option value="1">很差</option>
+        </select><br>
+       若差请具体表述：<input name='health2' class='up' ><br>
+       既往病史：
+       <input type="checkbox" class="bingshi" value="无" id='check_none' />无
+      <input type="checkbox" name="bingshi" value="脑炎" class='bingshi' />脑炎
+         <input type="checkbox" name="bingshi" value="癫痫" class='bingshi' />癫痫
+      <input type="checkbox" name="bingshi" value="心脏病" class='bingshi' />心脏病
+         <input type="checkbox" name="bingshi" value="哮喘" class='bingshi' />哮喘
+      <input type="checkbox" name="bingshi" value="过敏史" class='bingshi' />过敏史
+         <input type="checkbox" name="bingshi" value="肺结核" class='bingshi' />肺结核
+      <input type="checkbox" name="bingshi" value="小儿麻痹" class='bingshi' />小儿麻痹
+         <input type="checkbox" name="bingshi" value="心理问题" class='bingshi' />心理问题
+      <input type="checkbox" name="bingshi" value="其他" class='bingshi' />其他
+        <br>若有请具体说明：<input class='bingshi'  id='bingshi2' ><br>
+        在校主要表现：<input name='zaixiaobiaoxian'>
+        
+           特殊情况：
+       <input type="checkbox" class="special" value="单亲家庭" />单亲家庭
+      <input type="checkbox" class="special" value="留守儿童" />留守儿童
+         <input type="checkbox" class="special" value="自杀自伤行为" />自杀自伤行为
+      <input type="checkbox" class="special" value="其他" />其他：<input class='special'>
+      
+        <p>家庭情况</p>
+        <button type='button' id='fam_add1'>+1</button><button  type='button' id='fam_sub1'>-1</button>
+        <table id='tb_family'>
+          <tr><th>称谓</th><th>姓名</th><th>年龄</th><th>职业（工作单位）</th><th>联系方式</th><th>与自己的亲密关系水平</th></tr>
+          <tr id='family_neirong'><td><input class='f_chenwei'></td><td><input class='f_name'></td><td><input class='f_age' type="number"></td>
+          <td><input class='f_job'></td><td><input class='f_tel'></td><td>
+          <select class='f_guanxi'>
+          <option value ="0">请选择</option>
+          <option value="3">亲密</option>
+          <option value="2">普通</option>
+          <option value="1">疏远</option>
+        </select></td></tr>
+        <table>
+        父母关系：
+       <input type="checkbox" class="guanxi" value="和睦" />和睦
+      <input type="checkbox" class="guanxi" value="不和" />不和
+         <input type="checkbox" class="guanxi" value="分居" />分居
+           <input type="checkbox" class="guanxi" value="离异" />离异
+      <input type="checkbox" class="guanxi" value="其他" />其他：<input class='guanxi'>
+        家庭气氛：
+        <select name='qifen' class='up' >
+          <option value ="0">请选择</option>
+          <option value ="4">和谐</option>
+          <option value="3">普通</option>
+          <option value="2">欠和谐</option>
+          <option value="1">沉闷</option>
+        </select>其他：<input name='qifen2' class='up' >
+        
+           <p>学习经历</p>
+        <button type='button' id='stu_add1'>+1</button><button  type='button' id='stu_sub1'>-1</button>
+        <table id='tb_study'>
+              <tr><th>起止时间</th><th>在何校学习</th><th>担任职务</th><th>对当时集体的喜爱程度</th></tr>
+              <tr id='stu_neirong'><td><input class='s_time'></td><td><input class='s_school'></td>
+          <td><input class='s_job'></td>
+          <td>
+          <select class='s_xiai'>
+          <option value ="0">请选择</option>
+              <option value="5">喜欢</option>
+          <option value="4">较喜欢</option>
+          <option value="3">一般</option>
+          <option value="2">不太喜欢</option>
+          <option value="1">不喜欢</option>
+        </select></td></tr>
+        </table >
+            <p>补充说明</p>
+            关于学生情况的补充说明：
+            <input name='buchong' class='up' >
+            
+            <p><input type="submit" value='提交'></p>
+        <button type='button' id='ok'>OK</button>
+    </form>
+    <script>
+    $(document).ready(function(){
+      $('#check_none').click(function(){
+          if($('#check_none').attr('checked')){
+              $('.bingshi').removeAttr('checked');
+              $('.bingshi').attr('disabled',1);
+              $('#bingshi2').attr({'disabled':1,value:''});
+          }else{
+              $('.bingshi').removeAttr('disabled');
+              $('#bingshi2').removeAttr('disabled');
+          }
+      });
+      family_number=2
+      family_neirong=$('#family_neirong').html();
+
+      $('#tb_family').append('<tr>'+family_neirong+'</tr>')
+      $('#fam_add1').click(function(){
+        $('#tb_family').append('<tr>'+family_neirong+'</tr>')
+        family_number++;
+      });
+      $('#fam_sub1').click(function(){
+        if(family_number<2){
+            alert('不能再减少了');return;
+        }
+        family_number--;
+        p=$('#family_neirong').next();
+        for(i=2;i<family_number;i++){
+          p=p.next();
+        }
+        p.remove();
+      });
+      
+      stu_number=2
+      stu_neirong=$('#stu_neirong').html();
+        $('#tb_study').append('<tr>'+stu_neirong+'</tr>')
+      $('#stu_add1').click(function(){
+        $('#tb_study').append('<tr>'+stu_neirong+'</tr>')
+        stu_number++;
+      });
+      $('#stu_sub1').click(function(){
+        if(stu_number<2){
+            alert('不能再减少了');return;
+        }
+        stu_number--;
+        p=$('#stu_neirong').next();
+        for(i=2;i<stu_number;i++){
+          p=p.next();
+        }
+        p.remove();
+      });
+      
+      $('#ok').hide();
+          $('#ok').click(function(){
+			d={family:[],study:[]};
+              for(i=0;i<family_number;i++){
+                  d.family[i]={}
+                  d.family[i].chenwei=$('.f_chenwei')[i].value;
+                  d.family[i].name=$('.f_name')[i].value;
+                  d.family[i].age=$('.f_age')[i].value;
+                  d.family[i].job=$('.f_job')[i].value;
+                  d.family[i].tel=$('.f_tel')[i].value;
+                  d.family[i].guanxi=$('.f_guanxi')[i].value;
+              }
+              for(i=0;i<stu_number;i++){
+                  d.study[i]={}
+                  d.study[i].time=$('.s_time')[i].value;
+                  d.study[i].school=$('.s_school')[i].value;
+                  d.study[i].xiai=$('.s_xiai')[i].value;
+                  d.study[i].job=$('.s_job')[i].value;
+              }
+			  
+			  up=$('.up');
+			  up_len=up.length;
+			  for(i=0;i<up_len;i++){
+				var name=up[i].getAttribute('name')
+				var val=up[i].value
+				d[name]=val;
+			  }
+			  d.bingshi=[]
+			  bb=$('.bingshi');
+			  for(i=0;i<bb.length;i++){
+				if(bb[i].checked){
+					d.bingshi.push(bb[i].value);
+				}
+			  }			
+			  d.bingshi.push(bb[bb.length-1].value);
+			  d.special=[]
+			  bb=$('.special');
+			  for(i=0;i<bb.length;i++){
+				if(bb[i].checked){
+					d.special.push(bb[i].value);
+				}
+			  }			
+				d.special.push(bb[bb.length-1].value);
+				d.guanxi=[]
+			  bb=$('.guanxi');
+			  for(i=0;i<bb.length;i++){
+				if(bb[i].checked){
+					d.guanxi.push(bb[i].value);
+				}
+			  }
+			d.guanxi.push(bb[bb.length-1].value);	
+            alert(JSON.stringify(d));
+          });
+    });
+    </script>
+     
+    </body>
+    </html>
+
