@@ -1,0 +1,33 @@
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <meta charset="UTF-8" />
+    <title>体测查询</title>
+    <style>
+
+    </style>
+    <script src="jquery-1.8.0.js">
+    </script>
+    </head>
+    <body>
+    <form method='get'>
+      <p>班级：</p>
+      <input id='class'>
+      <p>姓名：</p>
+      <input id='name'>
+        <button type='button' id='ok'>OK</button>
+    </form>
+    <script>
+    $('#id').click(function(){
+      banji=$('#class').attr('value')
+      mingzi=$('#name').attr('value')
+      $.get("http://localhost:8080", { name: mingzi, class:banji },
+  function(data){
+    alert("Data Loaded: " + data);
+  });
+    })
+    </script>
+     
+    </body>
+    </html>
+
